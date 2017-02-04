@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Hall</h1>
+    <ul>
+    {% for meal in meals %}
+        <li>{{ meal.name|e }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

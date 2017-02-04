@@ -1,0 +1,28 @@
+{% set label_kind = {0: "danger", 1: "warning", 2: "success", 3: "info"}[order.state] %}
+
+<div class="panel panel-{{ label_kind }}">
+    <div class="panel-heading">Заказан: {{ order.created_at|datetime }}<span class="label label-{{ label_kind }} pull-right">
+        {{ {0: "Новый заказ", 1: "Заказ готовится", 2: "Заказ готов", 3: "Заказ отменен"}[order.state] }}</span>
+    </div>
+    <div class="panel-body">
+        <div class="pull-left">
+            <h4>{{ order.meal.name|e }} ({{ order.meal.price|int }} р.)</h4>
+            {% if order.state > 0 %}
+                <h5>В работе с: {{ order.cooking_at|datetime }}</h5>
+                {% if order.state > 1 %}
+                    <h5>Готов: {{ order.ready_at|datetime }}</h5>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            {% for button in buttons %}
+                {% if (not (order.state == 3)) and not ((button.action == 3) and (order.state > 0)) %}
+                    <button onclick="window.location = '/order/set_state/{{ order.id }}/{{ button.action }}/{{ button.referrer }}';"
+                            type="button" class="btn btn-default">{{ button.title }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+

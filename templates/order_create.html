@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form class="form-horizontal" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.meal_id.label(class_="col-sm-2 control-label") }}
+            <div class="col-sm-4">
+                {{ form.meal_id(class_="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Заказать</button>
+        </div>
+    </form>
+{% endblock %}

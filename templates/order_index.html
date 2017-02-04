@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block header_block %}
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            namespace = '';
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+            socket.on('reload', function() {
+                location.reload();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if orders|length == 0 %}
+        <div class="alert alert-success" role="alert">Заказов сейчас нет</div>
+    {% else %}
+        {% for order in orders %}
+            {% include "order_partial.html" %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

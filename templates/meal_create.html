@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form class="form-horizontal" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.name.label(class_="col-sm-2 control-label") }}
+            <div class="col-sm-4">
+                {{ form.name(size=20, class_="form-control") }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form.price.label(class_="col-sm-2 control-label") }}
+            <div class="col-sm-4">
+                {{ form.price(class_="form-control") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-default">Добавить</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

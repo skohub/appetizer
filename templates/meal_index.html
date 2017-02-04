@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <ul class="list-group">
+    {% for meal in meals %}
+        <li class="list-group-item">
+            {{ meal.name|e }}. Цена: {{ meal.price|round|int }} р.
+             <a class="btn btn-default btn-xs pull-right" href="/meal/delete/{{ meal.id }}" role="button">Удалить</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <a class="btn btn-default" href="/meal/create" role="button">Добавить блюдо</a>
+{% endblock %}
